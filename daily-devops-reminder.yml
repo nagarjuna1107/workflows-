@@ -1,0 +1,23 @@
+name: Daily DevOps Progress Reminder
+
+on:
+  schedule:
+    - cron: '30 14 * * *' # Runs daily at 14:30 UTC (20:00 IST)
+  workflow_dispatch:
+
+jobs:
+  create-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create daily reminder issue
+        uses: peter-evans/create-issue@v4
+        with:
+          title: "Daily Reminder: Update DevOps Progress Tracker"
+          body: |
+            This is an automated daily reminder to:
+            1. Update your DevOps Progress Tracker Excel (DevOps_Progress_Tracker.xlsx).
+            2. Log today's study/work in the repository (add notes in /docs or update the tracker).
+            3. Continue your 25-day plan (focus: DevOps + DevSecOps).
+          labels: reminder
+          assignees: your-github-username
+          # To avoid piling up issues, you might prefer to create a comment on an existing issue instead.
